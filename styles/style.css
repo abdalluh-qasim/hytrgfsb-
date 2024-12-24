@@ -1,0 +1,936 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    direction: rtl;
+}
+
+body {
+    font-family: 'Amiri', serif;
+    background-color: #f5f5f5;
+    line-height: 1.6;
+}
+/* تحسين رأس الصفحة */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+    box-shadow: 0 4px 20px rgba(26, 35, 126, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.header-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(135deg, rgba(26, 34, 126, 0.269) 0%, transparent 100%);
+    transform: rotate(-45deg);
+    z-index: 1;
+}
+
+.logo-left img, .logo-right img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 100px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: white;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.logo-left img:hover, .logo-right img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.text-container {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 0 2rem;
+    flex-grow: 1;
+    max-width: 600px;
+}
+
+.text-container h1 {
+    color: #1a237e;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: inline-block;
+}
+
+.text-container h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #1a237e, #283593);
+    border-radius: 2px;
+}
+
+.text-container p {
+    color: #455a64;
+    font-size: 1.9rem;
+    margin-top: 1rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* تحسين الاستجابة للشاشات الصغيرة */
+@media (max-width: 1024px) {
+    .header-container {
+        padding: 1rem 2rem;
+    }
+
+    .text-container h1 {
+        font-size: 2rem;
+    }
+
+    .text-container p {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        padding: 1.5rem 1rem;
+        gap: 1rem;
+    }
+
+    .logo-left img, .logo-right img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .text-container {
+        padding: 1rem 0;
+    }
+
+    .text-container h1 {
+        font-size: 1.8rem;
+    }
+
+    .text-container p {
+        font-size: 1.1rem;
+    }
+
+    .logo-left, .logo-right {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* إضافة تأثيرات حركية */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header-container {
+    animation: fadeInDown 0.8s ease-out;
+}
+
+/* تأثيرات إضافية عند تحميل الصفحة */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.logo-left {
+    animation: slideIn 0.8s ease-out;
+}
+
+.logo-right {
+    animation: slideIn 0.8s ease-out reverse;
+}
+
+/* تحسين شكل الشعارات */
+.logo-left img, .logo-right img {
+    position: relative;
+}
+
+.logo-left img::after, .logo-right img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+    pointer-events: none;
+}
+/* تحديث تنسيق رأس الصفحة للهاتف */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: row; /* تغيير من column إلى row */
+        padding: 1rem;
+        gap: 0.5rem;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo-left img, .logo-right img {
+        width: 60px; /* تصغير حجم الشعارات قليلاً */
+        height: 60px;
+    }
+
+    .text-container {
+        padding: 0.5rem;
+        flex-grow: 1;
+        max-width: none;
+        margin: 0 0.5rem;
+    }
+
+    .text-container h1 {
+        font-size: 1.2rem; /* تصغير حجم العنوان */
+        margin-bottom: 0.3rem;
+    }
+
+    .text-container p {
+        font-size: 0.9rem; /* تصغير حجم النص */
+        margin-top: 0.3rem;
+    }
+
+    /* إزالة الخط تحت العنوان في الهاتف */
+    .text-container h1::after {
+        width: 50px;
+        height: 2px;
+        bottom: -3px;
+    }
+
+    .logo-left, .logo-right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 60px; /* تثبيت الحد الأدنى للعرض */
+    }
+}
+
+/* تحسين إضافي للشاشات الصغيرة جداً */
+@media (max-width: 480px) {
+    .logo-left img, .logo-right img {
+        width: 50px;
+        height: 50px;
+        padding: 5px;
+    }
+
+    .text-container h1 {
+        font-size: 1rem;
+    }
+
+    .text-container p {
+        font-size: 0.8rem;
+    }
+
+    .header-container {
+        padding: 0.5rem;
+    }
+}
+
+/* Navigation Styles */
+nav {
+    background: #1a237e;
+    padding: 1rem;
+    height: 90px;
+    position: relative;
+    font-family: "Readex Pro", sans-serif;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+ 
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+nav ul li a img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* Dropdown Styles */
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #ffffff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    width: 200px;
+    flex-direction: column;
+    gap: 0;
+    z-index: 1000;
+}
+
+nav ul li:hover ul {
+    display: block;
+}
+
+nav ul li ul li a {
+    color: #333;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+}
+
+nav ul li ul li a:hover {
+    background: #f0f0f0;
+}
+
+nav ul li ul li a img {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+
+
+
+
+
+/* Video Section */
+section video {
+    width: 100%;
+    margin: 10px 0px;
+    border-radius: 60px;
+    max-height: 600px;
+    object-fit: cover;
+    margin-top: 60px;
+ 
+}
+
+/* ... (الأكواد السابقة تبقى كما هي) ... */
+
+/* تحسين قسم أوقات الدوام */
+#working-hours {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background: linear-gradient(145deg, #ffffff, #f6f7ff);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(26, 35, 126, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+#working-hours::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(135deg, #1a227e63 0%, transparent 100%);
+    border-radius: 0 20px 0 100%;
+}
+
+#working-hours h2 {
+    color: #1a237e;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    position: relative;
+}
+
+#working-hours h2 img.icon {
+    width: 40px;  /* تكبير حجم الأيقونة */
+    height: 40px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+#working-hours table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#working-hours th {
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+    color: white;
+    padding: 1.2rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+#working-hours td {
+    padding: 1.2rem;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+#working-hours tr:last-child td {
+    border-bottom: none;
+}
+
+#working-hours tr:hover td {
+    background-color: #f5f6ff;
+ 
+}
+
+#working-hours tr:nth-child(even) {
+    background-color: #fafbff;
+}
+
+/* تحسين للشاشات الصغيرة */
+@media (max-width: 768px) {
+    #working-hours {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+    }
+
+    #working-hours h2 {
+        font-size: 1.5rem;
+    }
+
+    #working-hours h2 img.icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    #working-hours td, 
+    #working-hours th {
+        padding: 1rem 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* إضافة تأثيرات تفاعلية */
+ 
+
+ 
+ 
+
+
+
+#images-section {
+    display: flex;
+    flex-wrap: wrap; /* لتسمح بترتيب الصور بشكل عمودي على الشاشات الصغيرة */
+    justify-content: center; /* لمركزتها أفقيًا */
+    gap: 10px; /* مسافة بين الصور */
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+  
+  #images-section a {
+    flex: 1 1 calc(33.333% - 10px); /* توزيع الصور بالتساوي على 3 أعمدة */
+    max-width: 30%; /* تقييد عرض الصور */
+    text-align: center;
+  }
+  
+  #images-section img {
+    width: 100%; /* الصور تملأ الرابط */
+    height: auto; /* للحفاظ على النسبة بين العرض والارتفاع */
+    border-radius: 10px; /* زوايا مستديرة (اختياري) */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ظل خفيف (اختياري) */
+    transition: transform 0.3s; /* تأثير عند التمرير */
+  }
+  
+  #images-section img:hover {
+ filter: brightness(1.1);
+  }
+  
+  @media (max-width: 768px) { /* تنسيق الهاتف */
+    #images-section a {
+      flex: 1 1 100%; /* الصور تأخذ العرض بالكامل */
+      max-width: 100%; /* نفس التأثير */
+    }
+  }
+
+:root {
+    --primary-color: #1a237e;
+    --secondary-color: #283593;
+    --accent-color: #64b5f6;
+    --text-light: rgba(255,255,255,0.9);
+    --transition-speed: 0.3s;
+}
+    
+
+:root {
+    --primary-color: #1a237e; /* اللون الأساسي */
+    --secondary-color: #283593; /* اللون الثانوي */
+    --accent-color: #64b5f6; /* لون التمييز */
+    --text-light: rgba(255, 255, 255, 0.9); /* لون النص الفاتح */
+    --transition-speed: 0.3s; /* سرعة الانتقال */
+}
+
+:root {
+    --primary-color: #1a237e; /* اللون الأساسي */
+    --secondary-color: #283593; /* اللون الثانوي */
+    --accent-color: #64b5f6; /* لون التمييز */
+    --text-light: rgba(255, 255, 255, 0.9); /* لون النص الفاتح */
+    --text-dark: rgba(0, 0, 0, 0.7); /* لون النص الداكن */
+    --transition-speed: 0.3s; /* سرعة الانتقال */
+}
+
+:root {
+    --primary-color: #1a237e; /* اللون الأساسي */
+    --secondary-color: #283593; /* اللون الثانوي */
+    --accent-color: #64b5f6; /* لون التمييز */
+    --text-light: rgba(255, 255, 255, 0.9); /* لون النص الفاتح */
+    --text-dark: rgba(0, 0, 0, 0.7); /* لون النص الداكن */
+    --transition-speed: 0.3s; /* سرعة الانتقال */
+}
+
+:root {
+    --primary-color: #1a237e;
+    --secondary-color: #283593;
+    --accent-color: #64b5f6;
+    --text-light: rgba(255,255,255,0.9);
+    --transition-speed: 0.3s;
+}
+
+footer {
+    background: linear-gradient(
+        135deg, 
+        var(--primary-color), 
+        var(--secondary-color)
+    );
+    color: var(--text-light);
+    padding: 5rem 0 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 -15px 40px rgba(0,0,0,0.1);
+}
+
+.footer-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 3.5rem;
+    padding: 0 2.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: all var(--transition-speed) ease;
+    perspective: 1000px;
+}
+
+.footer-section:hover {
+    transform: translateY(-15px) rotateX(5deg);
+}
+
+.footer-logo {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 2rem;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 
+        0 20px 30px rgba(0,0,0,0.2),
+        0 0 20px rgba(100,181,246,0.2);
+    transition: all 0.5s ease;
+    filter: brightness(0.9);
+}
+
+.footer-logo:hover {
+ 
+    filter: brightness(1.1);
+    box-shadow: 
+        0 25px 40px rgba(0,0,0,0.3),
+        0 0 30px var(--accent-color);
+}
+
+.footer-section h3 {
+    color: white;
+    margin-bottom: 1.8rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: 15px;
+    background: linear-gradient(
+        to right, 
+        var(--accent-color), 
+        transparent
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    transition: all var(--transition-speed) ease;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(
+        to right, 
+        var(--accent-color), 
+        transparent
+    );
+    border-radius: 2px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.social-icons a {
+    color: var(--text-light);
+    font-size: 2.5rem;
+    position: relative;
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+
+.social-icons a::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--accent-color);
+   
+    filter: brightness(1.1);
+    box-shadow: 
+        0 25px 40px rgba(0,0,0,0.3),
+        0 0 30px var(--accent-color);
+}
+
+.social-icons a:hover::before {
+    left: 0;
+    width: 100%;
+    filter: brightness(1.1);
+    box-shadow: 
+        0 25px 40px rgba(0,0,0,0.3),
+        0 0 30px var(--accent-color);
+}
+
+.social-icon {
+    
+size: 5px;
+}
+
+.social-icon a {
+    color: var(--text-light);
+    font-size: 2.5rem;
+
+    transition: all 0.4s ease;
+    
+}
+
+.social-icon a::before {
+    content: '';
+    
+    bottom: -10px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.social-icon a:hover {
+    color: var(--accent-color);
+   
+    filter: brightness(1.1);
+    box-shadow: 
+        0 25px 40px rgba(0,0,0,0.3),
+        0 0 30px var(--accent-color);
+}
+
+.social-icon a:hover::before {
+    left: 0;
+    width: 100%;
+    filter: brightness(1.1);
+    box-shadow: 
+        0 25px 40px rgba(0,0,0,0.3),
+        0 0 30px var(--accent-color);
+}
+
+.quick-links ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.quick-links ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    position: relative;
+    padding-left: 20px;
+    transition: all var(--transition-speed) ease;
+}
+
+.quick-links ul li a::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    transition: all var(--transition-speed) ease;
+}
+
+.quick-links ul li a:hover {
+    color: var(--accent-color);
+    padding-left: 30px;
+}
+
+.quick-links ul li a:hover::before {
+    opacity: 1;
+    left: 0;
+}
+
+.footer-bottom {
+    background: rgba(0,0,0,0.1);
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* خلفية متحركة متطورة */
+footer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        ellipse at center, 
+        rgba(26,35,126,0.1) 0%, 
+        rgba(26,35,126,0.3) 100%
+    );
+    animation: moveBackground 30s linear infinite;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+@keyframes moveBackground {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+/* استجابة للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+/* تحسين أنماط قائمة البرجر */
+.burger-menu {
+    width: 80px;
+    height: 80px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+ 
+    background: #333;
+    border-radius: 15px;
+    padding: 8px;
+    transition: all 0.3s ease;
+ margin-top: -10px;
+}
+
+.burger-menu:hover {
+    background: rgba(124, 123, 123, 0.651);
+}
+
+.burger-menu span {
+    width: 24px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+
+}
+
+/* تحسين القائمة المنسدلة في وضع الهاتف */
+@media (max-width: 768px) {
+    .burger-menu {
+        display: flex;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1002;
+    }
+
+    /* تحريك الخطوط عند فتح القائمة */
+    .burger-menu.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .burger-menu.active span:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    .burger-menu.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        background: #1a237e;
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav.active ul {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li a {
+        padding: 1rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 1.1rem;
+    }
+
+    nav ul li a img {
+        width: 20px;
+        height: 20px;
+        margin-left: 10px;
+    }
+
+    /* تحسين القوائم الفرعية */
+    nav ul li ul {
+        position: static;
+        display: none;
+        background: #f9faff;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+        border-radius: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    nav ul li:hover ul {
+        display: block;
+
+    }
+
+    nav ul li ul li a {
+        padding: 1rem 2rem;
+        background: rgba(255, 255, 255, 0.05);
+        font-size: 1rem;
+    }
+
+    nav ul li ul li a:hover {
+        background: #bdbdbd;
+    }
+}
+
+/* إضافة تأثيرات حركية */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تحسين المظهر العام للقائمة */
+nav ul li a {
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+}
+
